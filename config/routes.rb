@@ -1,5 +1,9 @@
 VideoJukebox::Application.routes.draw do
-  resources :videos
+  resources :videos do
+    resources :comments
+  end
+  
+  root :to => "videos#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

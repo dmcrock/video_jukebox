@@ -12,7 +12,7 @@
 <% @videos.each do |video| %>
   <tr>
     <td><%= video.title %></td>
-    <td><%= video.embed_code %></td>
+    <td><%= sanitize_embed_code(video) %></td>
     <td><%= link_to 'Show', video %></td>
     <td><%= link_to 'Edit', edit_video_path(video) %></td>
     <td><%= link_to 'Destroy', video, :confirm => 'Are you sure?', :method => :delete %></td>

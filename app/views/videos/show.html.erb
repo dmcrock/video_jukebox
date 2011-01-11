@@ -7,8 +7,30 @@
 
 <p>
   <b>Embed code:</b>
-  <%= @video.embed_code %>
+  <%= sanitize_embed_code(@video)%>
 </p>
+
+<h2>Please leave a comment:</h2>
+<% form_for([@video, Comment.new]) do |f| %>
+  <%= f.error_messages %>
+  
+  <div class="field">
+    <%= f.text_area :body %>
+    </div>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  <% end %>
+  
+<h2>What others felt about this:</h2>
+<div id="comments">
+  <% @video.comments.reverse.each do |comment| %>
+    <div class="comment">
+      <p><%= comment.body %></p>
+    </div>
+  <% end %>
+ </div>
 
 
 <%= link_to 'Edit', edit_video_path(@video) %> |
